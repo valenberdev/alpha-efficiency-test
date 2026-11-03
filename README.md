@@ -38,14 +38,14 @@
 
 ## The brief
 
-| Requirement                                | How it is solved                                                                                                                                            |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Responsive from 1920px down to 320px       | Mobile-first CSS with breakpoints at 768px and 1200px, matching the three Figma frames (375, 820, 1920). No horizontal scroll at any width.                 |
-| Burger menu with navigation list           | Accessible disclosure menu driven by `aria-expanded`. Closes on link click, outside click, `Escape` and when reaching the desktop layout.                   |
-| Working countdown                          | Counts down to the next local midnight. Remaining time is computed from `Date.now()` on every tick, so it never drifts and recovers after a background tab. |
-| FAQ dropdown with lorem ipsum              | Accordion with animated height, one item open at a time, `aria-expanded` and `aria-controls` on every question.                                             |
-| Good UX details                            | See [UX details](#ux-details).                                                                                                                              |
-| Responsive background and ring decorations | Rings scale with the viewport and are positioned relative to the text so they never cover it.                                                               |
+| Requirement                                | How it is solved                                                                                                                                                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Responsive from 1920px down to 320px       | Mobile-first CSS with breakpoints at 768px and 1200px, matching the three Figma frames (375, 820, 1920). No horizontal scroll at any width.                                                                            |
+| Burger menu with navigation list           | Accessible disclosure menu driven by `aria-expanded`. Closes on link click, outside click, `Escape` and when reaching the desktop layout.                                                                              |
+| Working countdown                          | Counts down to the next Monday at 00:00 local time. Remaining time is computed from `Date.now()` on every tick, so it never drifts and recovers after a background tab. It rolls over to the following week by itself. |
+| FAQ dropdown with lorem ipsum              | Accordion with animated height, one item open at a time, `aria-expanded` and `aria-controls` on every question.                                                                                                        |
+| Good UX details                            | See [UX details](#ux-details).                                                                                                                                                                                         |
+| Responsive background and ring decorations | Rings scale with the viewport and sit behind the content. Where one would meet white text, its position is adjusted.                                                                                                   |
 
 ---
 
@@ -74,16 +74,16 @@
 
 ## Decisions and deviations
 
-| Topic              | Decision                                           | Why                                                                                                                            |
-| ------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Breakpoints        | 768px and 1200px                                   | Each Figma frame (375, 820, 1920) has its own layout, and everything in between degrades without overflow.                     |
-| Countdown          | Targets next local midnight                        | The design shows days, hours, minutes and seconds. With this target days are always `00`. The deadline is one value to change. |
-| Button contrast    | White text on pink and yellow kept from the design | It does not reach WCAG AA contrast. I kept it for fidelity and flag it as the first thing to review with the design team.      |
-| Tablet FAQ         | Questions are at least 44px tall                   | Figma uses 38px. I chose a usable touch target over exact fidelity.                                                            |
-| "Who" section ring | Shifted away from the text on narrow widths        | The original position overlapped white text on a white ring.                                                                   |
-| Mobile footer      | Centered below 768px                               | A deliberate departure from the left-aligned frame, kept to mobile only.                                                       |
-| Placeholder links  | Intentionally not connected                        | The brief provides no destinations.                                                                                            |
-| Fonts              | Libre Baskerville and Montserrat from Google Fonts | As specified in the design.                                                                                                    |
+| Topic              | Decision                                                                     | Why                                                                                                                                                                                                                                        |
+| ------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Breakpoints        | 768px and 1200px                                                             | Each Figma frame (375, 820, 1920) has its own layout, and everything in between degrades without overflow.                                                                                                                                 |
+| Countdown          | Targets next Monday 00:00, local time                                        | The brief asks for a countdown to "a specific number". A weekly deadline keeps every unit meaningful, with days going from 6 to 0. The design mockup shows `00` days, so the first hours of the week look different from the static frame. |
+| Color contrast     | White text on pink, yellow and blue, and pink on white, kept from the design | Several of these combinations do not reach WCAG AA (buttons, headings and paragraphs on colored sections, and the pink accents). I kept the Figma palette for fidelity. Darker brand tones would be the fix and need sign-off from design. |
+| Tablet FAQ         | Questions are at least 44px tall                                             | Figma uses 38px. I chose a usable touch target over exact fidelity.                                                                                                                                                                        |
+| "Who" section ring | Shifted away from the text on narrow widths                                  | The original position overlapped white text on a white ring.                                                                                                                                                                               |
+| Mobile footer      | Centered below 768px                                                         | A deliberate departure from the left-aligned frame, kept to mobile only.                                                                                                                                                                   |
+| Placeholder links  | Intentionally not connected                                                  | The brief provides no destinations.                                                                                                                                                                                                        |
+| Fonts              | Libre Baskerville and Montserrat from Google Fonts                           | As specified in the design.                                                                                                                                                                                                                |
 
 ---
 
