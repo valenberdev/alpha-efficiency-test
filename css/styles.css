@@ -1456,7 +1456,7 @@ button {
     }
 
     .help__cta-long {
-        display: inline;
+        display: flex;
     }
 
     .help__photo {
