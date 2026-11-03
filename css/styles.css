@@ -74,8 +74,8 @@ button {
 }
 
 :focus-visible {
-    outline: 3px solid var(--blue-dark);
-    outline-offset: 3px;
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
 }
 
 .skip-link {
@@ -147,9 +147,6 @@ button {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.btn:focus-visible {
-    outline-color: var(--text);
-}
 
 .stats .btn,
 .who .btn,
