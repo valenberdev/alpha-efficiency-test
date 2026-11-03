@@ -1077,17 +1077,17 @@ button {
     }
 
     .stats {
-        padding: 45px 0 66px;
+        padding: 43px 0;
     }
 
     .stats__list {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
-        margin-bottom: 51px;
+        margin-bottom: 32px;
     }
 
     .stat {
-        padding: 14px 8px 18px;
+        padding: 14px 8px;
     }
 
     .stat__icon {
@@ -1155,7 +1155,7 @@ button {
     }
 
     .faq {
-        padding: 65px 0 70px;
+        padding: 65px 0 66px;
     }
 
     .faq__title {
@@ -1163,13 +1163,14 @@ button {
     }
 
     .faq__list {
-        gap: 14px;
-        margin: 46px 0 44px;
+        gap: 12px;
+        margin: 44px 0 49px;
     }
 
     .faq__question {
-        min-height: 64px;
-        font-size: 1rem;
+        min-height: 44px;
+        padding-block: 7px;
+        font-size: 0.875rem;
     }
 
     .faq__panel-inner p {
