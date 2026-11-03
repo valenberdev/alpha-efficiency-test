@@ -141,11 +141,6 @@ button {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-    filter: brightness(1.06);
-}
 
 .btn:active {
     transform: translateY(0);
@@ -304,8 +299,8 @@ button {
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.nav__link:hover,
-.nav__link:focus-visible {
+.nav__link:focus-visible,
+.nav__link:active {
     background: var(--bg);
     box-shadow: inset 4px 0 0 var(--pink);
 }
@@ -765,9 +760,6 @@ button {
     transition: background-color 0.2s ease;
 }
 
-.faq__item:hover {
-    background: #f1f1f1;
-}
 
 .faq__heading {
     font: inherit;
@@ -922,9 +914,6 @@ button {
     text-decoration: none;
 }
 
-.footer__contact a:hover {
-    text-decoration: underline;
-}
 
 .footer__nav {
     display: flex;
@@ -953,8 +942,8 @@ button {
     transition: background-size 0.25s ease;
 }
 
-.footer__links a:hover,
-.footer__links a:focus-visible {
+.footer__links a:focus-visible,
+.footer__links a:active {
     background-size: 100% 1px;
 }
 
@@ -985,9 +974,8 @@ button {
     height: 14px;
 }
 
-.social__link:hover {
-    transform: translateY(-2px) scale(1.08);
-    filter: brightness(1.08);
+.social__link:active {
+    transform: scale(0.94);
 }
 
 .footer__copy {
@@ -1251,8 +1239,8 @@ button {
         transition: background-size 0.25s ease;
     }
 
-    .nav__link:hover,
-    .nav__link:focus-visible {
+    .nav__link:focus-visible,
+    .nav__link:active {
         background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
         box-shadow: none;
     }
@@ -1559,6 +1547,43 @@ button {
         grid-column: 1 / -1;
         grid-template-columns: 713px 1fr;
         align-items: center;
+    }
+}
+
+@media (hover: hover) {
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        filter: brightness(1.06);
+    }
+
+    .nav__link:hover {
+        background: var(--bg);
+        box-shadow: inset 4px 0 0 var(--pink);
+    }
+
+    .faq__item:hover {
+        background: #f1f1f1;
+    }
+
+    .footer__contact a:hover {
+        text-decoration: underline;
+    }
+
+    .footer__links a:hover {
+        background-size: 100% 1px;
+    }
+
+    .social__link:hover {
+        transform: translateY(-2px) scale(1.08);
+        filter: brightness(1.08);
+    }
+}
+
+@media (hover: hover) and (min-width: 1200px) {
+    .nav__link:hover {
+        background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
+        box-shadow: none;
     }
 }
 
