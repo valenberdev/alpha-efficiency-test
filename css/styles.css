@@ -267,6 +267,10 @@ button {
     top: 100%;
     right: 0;
     left: 0;
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--white);
     border-radius: 0 0 20px 20px;
     box-shadow: 0 24px 40px rgba(0, 0, 0, 0.14);
@@ -464,7 +468,7 @@ button {
 }
 
 .stat__icon--green {
-    color: #55a201;
+    color: var(--green);
 }
 
 .stat__value {
@@ -842,7 +846,6 @@ button {
 
 .ring--faq-a {
     --rs: clamp(140px, 21.4vw, 410px);
-    --ring-c: var(--bg);
     top: 50%;
     left: calc(var(--rs) * -0.46);
     border-color: var(--bg);
@@ -1224,6 +1227,8 @@ button {
     .nav {
         position: static;
         margin-left: auto;
+        max-height: none;
+        overflow: visible;
         background: none;
         border-radius: 0;
         box-shadow: none;
@@ -1573,7 +1578,7 @@ button {
         box-shadow: inset 4px 0 0 var(--pink);
     }
 
-    .faq__item:hover {
+    .faq__item:not(.is-open):hover {
         background: #f1f1f1;
     }
 
@@ -1634,9 +1639,6 @@ button {
     background: rgba(0, 0, 0, 0.04);
 }
 
-.faq__item:not(.is-open):hover {
-    background: #f1f1f1;
-}
 
 @media (max-width: 767px) {
     .footer__inner {
@@ -1744,5 +1746,11 @@ button {
     .ring:nth-of-type(3n) {
         animation-duration: 15s;
         animation-delay: -5s;
+    }
+}
+
+@media (pointer: coarse) {
+    .btn {
+        min-height: 44px;
     }
 }
