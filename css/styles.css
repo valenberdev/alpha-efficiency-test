@@ -26,6 +26,7 @@
 html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -187,11 +188,28 @@ button {
 }
 
 .header {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 30;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header--scrolled {
+    --header-h: 60px;
+    background-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    backdrop-filter: blur(20px) saturate(1.2);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .header--scrolled {
+        background-color: rgba(255, 255, 255, 0.94);
+    }
 }
 
 .header__inner {
@@ -200,6 +218,7 @@ button {
     justify-content: space-between;
     min-height: var(--header-h);
     padding-inline: 20px;
+    transition: min-height 0.3s ease;
 }
 
 .header__logo {
@@ -209,6 +228,11 @@ button {
 .header__logo img {
     width: 89px;
     height: auto;
+    transition: width 0.3s ease;
+}
+
+.header--scrolled .header__logo img {
+    width: 68px;
 }
 
 .burger {
@@ -1003,6 +1027,14 @@ button {
 
     .header__logo img {
         width: 138px;
+    }
+
+    .header--scrolled {
+        --header-h: 76px;
+    }
+
+    .header--scrolled .header__logo img {
+        width: 104px;
     }
 
     .hero {
