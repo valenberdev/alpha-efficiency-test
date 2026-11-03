@@ -1,66 +1,123 @@
-# A Better Weigh | Landing Page
+<div align="center">
 
-Responsive landing page built from the Figma design as part of the Alpha Efficiency web developer test task.
+# A Better Weigh
 
-**Live preview:** https://valenberdev.github.io/alpha-efficiency-test/
+**Responsive landing page for a medical weight-loss center, built from a Figma design.**
 
-![Desktop preview](docs/preview-desktop.png)
+[![Live demo](https://img.shields.io/badge/live-demo-DD71C6?style=for-the-badge)](https://valenberdev.github.io/alpha-efficiency-test/)
 
-| Tablet (820px)                             | Mobile (375px)                             |
-| ------------------------------------------ | ------------------------------------------ |
-| ![Tablet preview](docs/preview-tablet.png) | ![Mobile preview](docs/preview-mobile.png) |
+![HTML5](https://img.shields.io/badge/HTML5-semantic-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-mobile--first-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Dependencies](https://img.shields.io/badge/dependencies-0-55A301?style=flat-square)
 
-## Stack
+<sub>Alpha Efficiency · Web Developer test task</sub>
 
-HTML, CSS and vanilla JavaScript only. No frameworks, no libraries, no build step.
+</div>
+
+---
+
+## Preview
+
+<p align="center">
+  <img src="docs/preview-desktop.png" alt="Desktop preview at 1920px" width="900">
+</p>
+
+<table>
+  <tr>
+    <td align="center" valign="top"><b>Tablet · 820px</b></td>
+    <td align="center" valign="top"><b>Mobile · 375px</b></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><img src="docs/preview-tablet.png" alt="Tablet preview at 820px" width="380"></td>
+    <td align="center" valign="top"><img src="docs/preview-mobile.png" alt="Mobile preview at 375px" width="240"></td>
+  </tr>
+</table>
+
+---
+
+## The brief
+
+| Requirement                                | How it is solved                                                                                                                                            |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Responsive from 1920px down to 320px       | Mobile-first CSS with breakpoints at 768px and 1200px, matching the three Figma frames (375, 820, 1920). No horizontal scroll at any width.                 |
+| Burger menu with navigation list           | Accessible disclosure menu driven by `aria-expanded`. Closes on link click, outside click, `Escape` and when reaching the desktop layout.                   |
+| Working countdown                          | Counts down to the next local midnight. Remaining time is computed from `Date.now()` on every tick, so it never drifts and recovers after a background tab. |
+| FAQ dropdown with lorem ipsum              | Accordion with animated height, one item open at a time, `aria-expanded` and `aria-controls` on every question.                                             |
+| Good UX details                            | See [UX details](#ux-details).                                                                                                                              |
+| Responsive background and ring decorations | Rings scale with the viewport and are positioned relative to the text so they never cover it.                                                               |
+
+---
+
+## Beyond the brief
+
+- **Sticky glass header.** Transparent over the hero, turns into a blurred translucent bar on scroll and shrinks slightly.
+- **Count-up stats.** The numbers in the stats strip animate once when they enter the viewport.
+- **Ring drift.** Background rings move slowly with a GPU-only `transform` animation.
+- **Art direction.** `<picture>` serves a different photo on desktop and on mobile/tablet. Images are WebP and lazy loaded.
+- **Sharing metadata.** Open Graph and Twitter cards, favicon and theme color.
+
+---
+
+## UX details
+
+- **Hover only where it exists.** Hover effects run inside `@media (hover: hover)`, so nothing gets stuck after a tap on touch screens. Pressed states cover touch.
+- **Keyboard focus.** Focus ring with at least 3:1 contrast on every section background, plus a skip link.
+- **Touch targets.** Footer links and social icons have a 44px hit area, enlarged with an invisible pseudo-element so the design is untouched.
+- **No dead links.** Placeholder links (`href="#"`) do not jump to the top. They show a short notice instead.
+- **Touch polish.** No grey tap flash, no double-tap zoom on buttons, no accidental text selection on the FAQ.
+- **Reduced motion.** Count-up and ring animations are disabled for users who prefer reduced motion.
+- **FAQ readability.** The open item lifts into a white card with a divider between question and answer.
+- **Layout stability.** Tabular numbers keep the stats from shifting width while they count.
+
+---
+
+## Decisions and deviations
+
+| Topic              | Decision                                           | Why                                                                                                                            |
+| ------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Breakpoints        | 768px and 1200px                                   | Each Figma frame (375, 820, 1920) has its own layout, and everything in between degrades without overflow.                     |
+| Countdown          | Targets next local midnight                        | The design shows days, hours, minutes and seconds. With this target days are always `00`. The deadline is one value to change. |
+| Button contrast    | White text on pink and yellow kept from the design | It does not reach WCAG AA contrast. I kept it for fidelity and flag it as the first thing to review with the design team.      |
+| Tablet FAQ         | Questions are at least 44px tall                   | Figma uses 38px. I chose a usable touch target over exact fidelity.                                                            |
+| "Who" section ring | Shifted away from the text on narrow widths        | The original position overlapped white text on a white ring.                                                                   |
+| Mobile footer      | Centered below 768px                               | A deliberate departure from the left-aligned frame, kept to mobile only.                                                       |
+| Placeholder links  | Intentionally not connected                        | The brief provides no destinations.                                                                                            |
+| Fonts              | Libre Baskerville and Montserrat from Google Fonts | As specified in the design.                                                                                                    |
+
+---
+
+## Project structure
+
+```
+.
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   ├── menu.js         burger menu
+│   ├── header.js       glass state on scroll
+│   ├── countdown.js    live countdown
+│   ├── counters.js     stats count-up
+│   ├── faq.js          accordion
+│   └── links.js        placeholder link notice
+├── assets/
+│   └── img/            WebP and SVG assets
+└── docs/               previews used in this README
+```
+
+---
 
 ## Run locally
 
-Open `index.html` in a browser, or serve the folder:
+No build step and no dependencies. Open `index.html` in a browser, or serve the folder:
 
 ```bash
 npx serve .
 ```
 
-## Structure
+---
 
-```
-index.html
-css/styles.css
-js/
-  menu.js        burger menu behavior
-  header.js      sticky header glass state on scroll
-  countdown.js   live countdown
-  faq.js         accordion behavior
-  links.js       placeholder link handling
-assets/img/      optimized images (webp, svg)
-docs/            previews used in this README
-```
-
-## What is implemented
-
-- Responsive layout from 1920px down to 320px, built mobile-first. Layouts follow the three Figma frames (375, 820 and 1920) with breakpoints at 768px and 1200px.
-- Burger menu with the full navigation list. It closes on link click, outside click, `Escape` and when the viewport reaches the desktop layout. State is exposed through `aria-expanded`.
-- Sticky header that is transparent at the top and turns into a blurred glass bar when scrolling, with a smaller logo.
-- Working countdown. It targets the next local midnight and computes the remaining time from `Date.now()` on every tick, so it does not drift and stays correct after the tab was in the background.
-- FAQ accordion with lorem ipsum answers. One item open at a time, animated height, keyboard accessible, `aria-expanded` and `aria-controls` on every question.
-- Background and ring decorations that scale with the viewport.
-- Art direction with `<picture>`: a different photo is served on desktop and on mobile/tablet. Images are WebP with lazy loading below the fold.
-- Open Graph and Twitter card metadata, favicon and theme color.
-
-## UX details
-
-- Hover effects only run on devices that actually support hover, so nothing stays "stuck" after a tap on touch screens. Pressed states are provided for touch.
-- Keyboard focus ring with at least 3:1 contrast on every section background, plus a skip link.
-- Touch targets of 44px or more for footer links and social icons, enlarged with an invisible hit area so the design is unchanged.
-- Placeholder links (`href="#"`) do not jump to the top of the page. They show a short notice instead.
-- Tap highlight removed in favor of explicit pressed states, and double-tap zoom disabled on buttons.
-- Semantic HTML landmarks, descriptive `alt` text and a logical heading order.
-
-## Decisions and known deviations
-
-- **Breakpoints:** 768px and 1200px, chosen so the 820px and 1920px frames are covered by their own layouts and everything in between degrades without horizontal scroll.
-- **Countdown:** the design shows days, hours, minutes and seconds. Since the target is the next local midnight, days are always `00`. The structure supports a longer deadline by changing a single value.
-- **Color contrast:** white text on the pink (`#DD71C6`) and yellow (`#FFD900`) buttons comes from the design and does not reach WCAG AA contrast. I kept it for fidelity with the Figma file. The two buttons are the first thing I would raise with the design team.
-- **Placeholder links:** navigation, CTAs and footer links have no real destination in the brief, so they are intentionally not connected.
-- **Fonts:** Libre Baskerville and Montserrat are loaded from Google Fonts.
+<div align="center">
+  <sub>Built by <a href="https://github.com/valenberdev">Valentino Berdini</a></sub>
+</div>
