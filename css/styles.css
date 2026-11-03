@@ -550,10 +550,9 @@ button {
     left: 0;
     z-index: 2;
     width: 83.6%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 9999px;
+    height: auto;
+    -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% 67.8cqw no-repeat, radial-gradient(circle at 51.9cqw 67.8cqw, #000 36.8cqw, transparent calc(36.8cqw + 1px));
+    mask: linear-gradient(#000, #000) 0 0 / 100% 67.8cqw no-repeat, radial-gradient(circle at 51.9cqw 67.8cqw, #000 36.8cqw, transparent calc(36.8cqw + 1px));
 }
 
 .ring--who-a {
