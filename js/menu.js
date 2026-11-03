@@ -1,35 +1,39 @@
-(() => {
+(function () {
+  const header = document.querySelector(".header");
   const burger = document.querySelector(".burger");
-  const nav = document.getElementById("primary-nav");
+  if (!header || !burger) return;
+
   const desktop = window.matchMedia("(min-width: 1200px)");
 
-  if (!burger || !nav) return;
+  function isOpen() {
+    return burger.getAttribute("aria-expanded") === "true";
+  }
 
-  const isOpen = () => burger.getAttribute("aria-expanded") === "true";
-
-  const setOpen = (open) => {
+  function setOpen(open) {
     burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-  };
+  }
 
-  burger.addEventListener("click", () => setOpen(!isOpen()));
-
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) setOpen(false);
+  burger.addEventListener("click", function () {
+    setOpen(!isOpen());
   });
 
-  document.addEventListener("click", (event) => {
-    if (isOpen() && !event.target.closest(".header")) setOpen(false);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && isOpen()) {
+  header.querySelectorAll(".nav__link").forEach(function (link) {
+    link.addEventListener("click", function () {
       setOpen(false);
-      burger.focus();
-    }
+    });
   });
 
-  desktop.addEventListener("change", (event) => {
+  document.addEventListener("click", function (event) {
+    if (isOpen() && !header.contains(event.target)) setOpen(false);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape" || !isOpen()) return;
+    setOpen(false);
+    burger.focus();
+  });
+
+  desktop.addEventListener("change", function (event) {
     if (event.matches) setOpen(false);
   });
 })();
