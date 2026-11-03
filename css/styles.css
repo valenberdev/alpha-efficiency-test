@@ -581,7 +581,7 @@ button {
 .ring--who-b {
     --rs: clamp(100px, 14vw, 271px);
     top: 36%;
-    left: calc(var(--rs) * -0.5);
+    left: min(calc(var(--rs) * -0.5), calc(max(var(--gutter), (100vw - 1140px) / 2) - 10px - var(--rs)));
 }
 
 .help {
