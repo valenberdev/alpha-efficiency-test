@@ -1603,6 +1603,23 @@ button {
     inset: -7px;
 }
 
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.btn,
+.burger,
+.faq__question {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.faq__question:active {
+    background: rgba(0, 0, 0, 0.04);
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
