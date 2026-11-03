@@ -74,8 +74,8 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--text);
-  outline-offset: 3px;
+    outline: 3px solid var(--text);
+    outline-offset: 3px;
 }
 
 .skip-link {
@@ -1582,6 +1582,25 @@ button {
         background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
         box-shadow: none;
     }
+}
+
+.footer__links a,
+.footer__contact a,
+.social__link {
+    position: relative;
+}
+
+.footer__links a::after,
+.footer__contact a::after {
+    content: "";
+    position: absolute;
+    inset: -14px -8px;
+}
+
+.social__link::after {
+    content: "";
+    position: absolute;
+    inset: -7px;
 }
 
 @media (prefers-reduced-motion: reduce) {
