@@ -1,45 +1,55 @@
-(() => {
+(function () {
   const fields = {
     days: document.querySelector('[data-countdown="days"]'),
     hours: document.querySelector('[data-countdown="hours"]'),
     minutes: document.querySelector('[data-countdown="minutes"]'),
     seconds: document.querySelector('[data-countdown="seconds"]'),
   };
+  if (
+    Object.values(fields).some(function (field) {
+      return !field;
+    })
+  )
+    return;
 
-  if (Object.values(fields).some((field) => !field)) return;
+  const SECOND = 1000;
+  const MINUTE = 60 * SECOND;
+  const HOUR = 60 * MINUTE;
+  const DAY = 24 * HOUR;
 
-  const pad = (value) => String(value).padStart(2, "0");
+  function nextMonday() {
+    const now = new Date();
+    const ahead = (8 - now.getDay()) % 7 || 7;
+    return new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + ahead,
+    ).getTime();
+  }
 
-  const nextMidnight = () => {
-    const date = new Date();
-    date.setHours(24, 0, 0, 0);
-    return date.getTime();
-  };
+  let deadline = nextMonday();
 
-  let deadline = nextMidnight();
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
 
-  const render = () => {
+  function render() {
     let remaining = deadline - Date.now();
-
     if (remaining <= 0) {
-      deadline = nextMidnight();
+      deadline = nextMonday();
       remaining = deadline - Date.now();
     }
+    fields.days.textContent = pad(Math.floor(remaining / DAY));
+    fields.hours.textContent = pad(Math.floor((remaining % DAY) / HOUR));
+    fields.minutes.textContent = pad(Math.floor((remaining % HOUR) / MINUTE));
+    fields.seconds.textContent = pad(Math.floor((remaining % MINUTE) / SECOND));
+  }
 
-    const total = Math.floor(remaining / 1000);
-
-    fields.days.textContent = pad(Math.floor(total / 86400));
-    fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
-    fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
-    fields.seconds.textContent = pad(total % 60);
-  };
-
-  const tick = () => {
+  function tick() {
     render();
-    setTimeout(tick, 1000 - (Date.now() % 1000));
-  };
+    setTimeout(tick, SECOND - (Date.now() % SECOND));
+  }
 
   document.addEventListener("visibilitychange", render);
-
   tick();
 })();
