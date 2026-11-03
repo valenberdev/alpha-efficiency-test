@@ -2,7 +2,8 @@
   const items = document.querySelectorAll("[data-count-to]");
   if (!items.length) return;
 
-  const DURATION = 1600;
+  const DURATION = 900;
+  const START_RATIO = 0.6;
 
   if (
     window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -18,8 +19,13 @@
     return 1 - Math.pow(1 - t, 3);
   }
 
+  function startValue(el) {
+    return Math.floor(Number(el.dataset.countTo) * START_RATIO);
+  }
+
   function animate(el) {
     const target = Number(el.dataset.countTo);
+    const from = startValue(el);
     const grouped = el.hasAttribute("data-count-grouped");
     let start = null;
 
@@ -27,7 +33,7 @@
       if (start === null) start = now;
       const progress = Math.min((now - start) / DURATION, 1);
       el.textContent = format(
-        Math.round(target * easeOutCubic(progress)),
+        Math.round(from + (target - from) * easeOutCubic(progress)),
         grouped,
       );
       if (progress < 1) requestAnimationFrame(frame);
@@ -37,7 +43,10 @@
   }
 
   items.forEach(function (el) {
-    el.textContent = format(0, el.hasAttribute("data-count-grouped"));
+    el.textContent = format(
+      startValue(el),
+      el.hasAttribute("data-count-grouped"),
+    );
   });
 
   const observer = new IntersectionObserver(
