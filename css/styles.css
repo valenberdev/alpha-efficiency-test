@@ -844,6 +844,12 @@ button {
     border-top: 1px solid rgba(51, 51, 51, 0.12);
 }
 
+.faq__item.is-instant,
+.faq__item.is-instant .faq__panel,
+.faq__item.is-instant .faq__icon::before {
+    transition: none;
+}
+
 .ring--faq-a {
     --rs: clamp(140px, 21.4vw, 410px);
     top: 50%;
