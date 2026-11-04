@@ -5,7 +5,7 @@
   const mobile = window.matchMedia("(max-width: 767px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const TARGET_RATIO = 0.3;
-  const LOW_RATIO = 0.5;
+  const LOW_RATIO = 0.35;
   const EDGE_GAP = 16;
   const ANCHOR_PAUSE_MS = 400;
   const root = document.documentElement;
