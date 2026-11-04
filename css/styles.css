@@ -850,6 +850,10 @@ button {
     transition: none;
 }
 
+html.no-anchor {
+    overflow-anchor: none;
+}
+
 .ring--faq-a {
     --rs: clamp(140px, 21.4vw, 410px);
     top: 50%;
