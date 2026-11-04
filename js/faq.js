@@ -7,7 +7,9 @@
   const TARGET_RATIO = 0.3;
   const LOW_RATIO = 0.35;
   const EDGE_GAP = 16;
+  const HEADER_GAP = 24;
   const ANCHOR_PAUSE_MS = 400;
+  const header = document.querySelector(".header");
   const root = document.documentElement;
 
   function setOpen(item, open) {
@@ -40,12 +42,14 @@
     const rect = button.getBoundingClientRect();
     const answer = item.querySelector(".faq__panel-inner");
     const finalBottom = rect.top + button.offsetHeight + answer.scrollHeight;
+    const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+    const isHigh = rect.top < headerBottom + HEADER_GAP;
     const isLow = rect.top > viewport * LOW_RATIO;
     const isCut = finalBottom > viewport - EDGE_GAP;
-    if (!isLow && !isCut) return;
+    if (!isHigh && !isLow && !isCut) return;
 
     const shift = rect.top - viewport * TARGET_RATIO;
-    if (shift <= 0) return;
+    if (shift <= 0 && !isHigh) return;
 
     window.scrollBy({
       top: shift,
